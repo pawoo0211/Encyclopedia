@@ -18,10 +18,12 @@ If the encyclopedia doesn't have any words, add the word
 This project was built using these technologies.
 <br>
 Spring boot
+<br>
 JPA
+<br>
 Mysql
+<br>
 IntelliJ
-Postman
 <br>
 <br>
 
