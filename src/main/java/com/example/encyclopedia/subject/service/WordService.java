@@ -6,6 +6,7 @@ import com.example.encyclopedia.subject.domain.SubjectRepository;
 import com.example.encyclopedia.subject.domain.Word;
 import com.example.encyclopedia.subject.domain.WordRepository;
 import com.example.encyclopedia.subject.dto.CreateWordRequestDto;
+import com.example.encyclopedia.subject.dto.EditWordRequestDto;
 import com.example.encyclopedia.subject.dto.GetWordListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -69,5 +70,36 @@ public class WordService {
         }
 
         return new ResponseDto("단어 목록",result);
+    }
+
+    public ResponseDto editWord(String subjectName, String wordName, EditWordRequestDto editWordRequestDto) {
+
+        if(!subjectRepository.existsByName(subjectName)){
+            /* existsBy~는 존재할 경우 참 */
+            /* Optional<Subject> subject = Optional.ofNullable(subjectRepository.findByName(subjectName));
+            *  는 사용 불가능
+            */
+            return new ResponseDto("FAIL","해당 주제는 존재하지 않습니다.");
+        }
+
+        Subject subject = subjectRepository.findByName(subjectName);
+
+        if(!wordRepository.existsByNameAndSubject(wordName, subject)){
+            return new ResponseDto("FAIL","해당 주제에 맞는 단어는 존재하지 않습니다.");
+        }
+
+        Word word = wordRepository.findByNameAndSubject(wordName, subject);
+
+        if(editWordRequestDto.getType() == "name"){
+            word.setName(editWordRequestDto.getValue());
+            wordRepository.save(word);
+            return new ResponseDto("SUCCESS", "단어 이름 변경 완료");
+        }
+
+        word.setMeaning(editWordRequestDto.getValue());
+        wordRepository.save(word);
+        return new ResponseDto("SUCCESS", "단어 의미 변경 완료");
+
+
     }
 }

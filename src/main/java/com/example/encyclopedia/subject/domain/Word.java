@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Word {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "wordId")
+    @Column(name = "word_Id")
     private Long wordId;
 
     @Column(name = "name")
