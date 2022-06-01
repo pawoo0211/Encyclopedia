@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class CreateWordRequestDto {
-    String SubjectName;
+    String subjectName;
     String wordName;
     String meaning;
 }
