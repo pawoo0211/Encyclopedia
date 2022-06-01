@@ -29,4 +29,9 @@ public class WordController {
         return wordService.editWord(subjectName, wordName, editWordRequestDto);
     }
 
+    @DeleteMapping("{subject}/{word}/delete")
+    public  ResponseDto deleteWord(@PathVariable("subject") String subjectName, @PathVariable("word") String wordName){
+        return wordService.deleteWord(subjectName, wordName);
+    }
+
 }

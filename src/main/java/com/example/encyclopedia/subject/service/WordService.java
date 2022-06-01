@@ -102,4 +102,26 @@ public class WordService {
 
 
     }
+
+    public ResponseDto deleteWord(String subjectName, String wordName) {
+        if(!subjectRepository.existsByName(subjectName)){
+            /* existsBy~는 존재할 경우 참 */
+            /* Optional<Subject> subject = Optional.ofNullable(subjectRepository.findByName(subjectName));
+             *  는 사용 불가능
+             */
+            return new ResponseDto("FAIL","해당 주제는 존재하지 않습니다.");
+        }
+
+        Subject subject = subjectRepository.findByName(subjectName);
+
+        if(!wordRepository.existsByNameAndSubject(wordName, subject)){
+            return new ResponseDto("FAIL","해당 주제에 맞는 단어는 존재하지 않습니다.");
+        }
+
+        Word word = wordRepository.findByNameAndSubject(wordName, subject);
+
+        wordRepository.delete(word); // 자식 테이블인 "word"를 삭제하는 것은 가능
+
+        return new ResponseDto("단어 삭제", wordName);
+    }
 }
