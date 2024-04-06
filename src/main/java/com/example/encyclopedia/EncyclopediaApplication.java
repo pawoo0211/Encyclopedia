@@ -9,5 +9,4 @@ public class EncyclopediaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EncyclopediaApplication.class, args);
 	}
-
 }
