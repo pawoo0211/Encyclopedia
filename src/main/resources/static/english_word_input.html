@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>영어 단어 입력</title>
+</head>
+<body>
+<h2>영어 단어 입력</h2>
+<form action="#" th:action="@{/submit}" th:object="${wordForm}" method="post">
+    <label for="word">영어 단어:</label>
+    <input type="text" id="word" th:field="*{word}" required>
+    <button type="submit">제출</button>
+</form>
+</body>
+</html>
