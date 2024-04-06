@@ -1,7 +1,7 @@
-# Spirng-encyclopedia
+# Encyclopedia
 
 ## Overview
-This Application have planned encyclopedia related Spring-framework
+This Application have planned encyclopedia for Engilish Study
 <br>
 <br>
 
